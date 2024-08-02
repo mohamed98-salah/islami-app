@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ApplicationThemeManager {
+  static const Color primaryColor = Color.fromARGB(183, 147, 95, 1);
   static ThemeData lightThemeData = ThemeData(
+    primaryColor: primaryColor,
     appBarTheme: const AppBarTheme(
         backgroundColor: Colors.transparent,
         titleTextStyle: TextStyle(
@@ -51,6 +53,9 @@ class ApplicationThemeManager {
           fontSize: 20,
           fontWeight: FontWeight.w400,
           color: Colors.black),
+    ),
+    dividerTheme: DividerThemeData(
+      color: primaryColor,
     ),
   );
 }

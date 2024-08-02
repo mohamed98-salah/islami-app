@@ -1,5 +1,6 @@
 import 'package:face_book/core/application_theme_manager.dart';
 import 'package:face_book/layout/layout_viwe.dart';
+import 'package:face_book/modules/quran/quran_detalis_view.dart';
 import 'package:face_book/modules/splash/splash_view.dart';
 import 'package:flutter/material.dart';
 
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
       routes: {
         SplashView.routeName: (context) => const SplashView(),
         LayoutViwe.routeName: (context) => const LayoutViwe(),
+        QuranDetalisView.routeName:(context) =>  QuranDetalisView(),
       },
     );
   }
