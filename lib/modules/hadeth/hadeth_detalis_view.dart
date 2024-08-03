@@ -1,22 +1,16 @@
-import 'package:face_book/modules/quran/quran_veiw.dart';
+import 'package:face_book/modules/hadeth/hadeth_veiw.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
-class QuranDetalisView extends StatefulWidget {
-  static const String routeName = "quranDetailsView";
+class HadethDetalisView extends StatelessWidget {
+  static const String routename = "hadethDetalis";
 
-  const QuranDetalisView({super.key});
+  const HadethDetalisView({super.key});
 
-  @override
-  State<QuranDetalisView> createState() => _QuranDetalisViewState();
-}
-
-class _QuranDetalisViewState extends State<QuranDetalisView> {
   @override
   Widget build(BuildContext context) {
-    var data = ModalRoute.of(context)?.settings.arguments as SuraData;
     var theme = Theme.of(context);
-    if (content.isEmpty) lodaData(data.suraNumber);
+    var data = ModalRoute.of(context)?.settings.arguments as HadithData;
     return Container(
       decoration: BoxDecoration(
           image: DecorationImage(
@@ -41,25 +35,17 @@ class _QuranDetalisViewState extends State<QuranDetalisView> {
             bottom: 20,
           ),
           decoration: BoxDecoration(
-            color: const Color(0XFF141A2E).withOpacity(0.80),
+            color: const Color(0xFF141A2E).withOpacity(0.80),
             borderRadius: BorderRadius.circular(12),
           ),
           child: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    " سورة ${data.suraName}",
-                    style: theme.textTheme.bodyMedium,
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Icon(Icons.play_circle_fill_rounded ,
-                  color: theme.primaryColor,
-                  ),
-                ],
+              Text(
+                data.title,
+                style: theme.textTheme.bodyMedium,
+              ),
+              SizedBox(
+                width: 10,
               ),
               Divider(
                 thickness: 2,
@@ -67,13 +53,13 @@ class _QuranDetalisViewState extends State<QuranDetalisView> {
               Expanded(
                 child: ListView.builder(
                   itemBuilder: (context, index) => Text(
-                    "{${index + 1}}${versesList[index]}",
+                    data.body,
                     textAlign: TextAlign.center,
                     style: theme.textTheme.bodySmall?.copyWith(height: 1.8),
                   ),
-                  itemCount: versesList.length,
+                  itemCount: 6,
                 ),
-              )
+              ),
               // Text(
               //   textAlign: TextAlign.center,
               //   content,
@@ -86,15 +72,5 @@ class _QuranDetalisViewState extends State<QuranDetalisView> {
         ),
       ),
     );
-  }
-
-  String content = "";
-  List<String> versesList = [];
-
-  Future<void> lodaData(String suraNumer) async {
-    content = await rootBundle.loadString("assets/files/$suraNumer.txt");
-    versesList = content.split("/n");
-    setState(() {});
-    print(content);
   }
 }
